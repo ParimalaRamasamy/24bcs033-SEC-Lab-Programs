@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the number</title><style>
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          background-color: #f2f7ff;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          margin: 0;
+        }
+        .game-container {
+          background-color: #ffffff;
+          padding: 30px 40px;
+          border-radius: 12px;
+          box-shadow: 0 0 15px rgba(230, 8, 137, 0.1);
+          text-align: center;
+          max-width: 400px;
+          width: 90%;
+        }
+    
+        h2 {
+          color: #2c3e50;
+        }
+        input[type="number"] {
+            padding: 10px;
+          width: 80%;
+          max-width: 200px;
+          border: 2px solid #ccc;
+          border-radius: 8px;
+          margin-bottom: 15px;
+          font-size: 1rem;
+        }
+    
+        button {
+          padding: 10px 20px;
+          background-color: #3498db;
+          color: white;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 1rem;
+          transition: background-color 0.3s ease;
+        }
+    
+        button:hover {
+          background-color: #2980b9;
+        }
+        #feedback {
+          margin-top: 20px;
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+    
+        #attempts {
+          margin-top: 10px;
+          color: #555;
+        }
+      </style>
+        
+</head>
+<body>
+    <h2>Guess the number:</h2>
+    <input type="number" id="mainInput" placeholder="Enter your guess">
+    <button onclick="playGame()">guess</button>
+    <p id="feedback"></p>
+    <p id="attempts"></p>
+    <script>
+        let target=Math.floor(Math.random()*100)+1;
+        let count=0;
+        function playGame(){
+            let guess=parseInt(document.getElementById("mainInput").value);
+            count++;
+            if(guess<target){
+                document.getElementById("feedback").innerText="Too Low";
+
+            }else if(guess>target){
+                document.getElementById("feedback").innerText="Too High";
+
+            }else{
+                document.getElementById("feedback").innerText="correct!";
+                document.getElementById("attempts").innerText="Your guessed it in"+count+"attempts.";
+
+
+            }
+            
+        }
+    </script>
+</body>
+</html>
