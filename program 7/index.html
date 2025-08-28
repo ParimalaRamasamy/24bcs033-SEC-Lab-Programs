@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          padding: 40px;
+        
+        }
+      
+        #display {
+          font-size: 2.5rem;
+          margin-bottom: 20px;
+          padding: 10px 20px;
+          border: 2px solid #0af;
+          border-radius: 5px;
+          display: inline-block;
+          min-width: 100px;
+        }
+      
+        .start {
+          background-color: #28a745;
+          color:white; 
+        }
+      
+        .stop {
+          background-color: #dc3545; 
+          color:white;
+
+        }
+      
+        .reset {
+          background-color: #007bff; 
+          color:white;
+        }
+      
+        button:hover {
+          opacity: 0.8;
+        }
+      </style>
+      
+</head>
+<body>
+    <h2>Stopwatch</h2>
+    <p id="display">00:00</p>
+
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+    <button onclick="reset()">Reset</button>
+
+    <script>
+        let seconds = 0;
+        let intervalId = null;
+
+        function updateDisplay() {
+            const mins = String(Math.floor(seconds / 60)).padStart(2, '0');
+            const secs = String(seconds % 60).padStart(2, '0');
+            document.getElementById("display").textContent = `${mins}:${secs}`;
+        }
+
+        function start() {
+            if (!intervalId) {
+                intervalId = setInterval(() => {
+                    seconds++;
+                    updateDisplay();
+                }, 1000); 
+            }
+        }
+
+        function stop() {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+
+        function reset() {
+            stop(); 
+            seconds = 0;
+            updateDisplay();
+        }
+    </script>
+</body>
+</html>
+  
